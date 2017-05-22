@@ -17,4 +17,4 @@ matrix:
           env:
             - PACKAGE=freedv
 
-script: cd $PACKAGE && cmake - && make
+script: cd $PACKAGE && cmake . && make
