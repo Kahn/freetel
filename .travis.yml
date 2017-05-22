@@ -12,6 +12,7 @@ matrix:
             apt:
                 packages:
                     - libspeexdsp-dev
+                    - libsamplerate-dev
         - os: linux
           sudo: required
           addons:
