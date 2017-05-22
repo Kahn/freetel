@@ -4,6 +4,12 @@ matrix:
     include:
         - os: linux
           sudo: required
+          env:
+            - PACKAGE=codec2-dev
+            - PLATFORM=linux
+            - CMAKE_ARGS=-
+        - os: linux
+          sudo: required
           addons:
             apt:
                 packages:
@@ -17,5 +23,7 @@ matrix:
                     - libsndfile-dev
           env:
             - PACKAGE=freedv-dev
+            - PLATFORM=linux
+            - CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
 
-script: cd $PACKAGE && cmake - ../ && make
+script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make
