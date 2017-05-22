@@ -1,0 +1,6 @@
+language: c
+os: osx
+osx_image: xcode8.3
+before_install:
+  - brew update
+  - brew install subversion git libtool libsamplerate sox portaudio dylibbundler cmake
