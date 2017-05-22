@@ -7,7 +7,6 @@ matrix:
           env:
             - PACKAGE=freedv-dev
         - os: osx
-          language: generic
           env:
             - PACKAGE=freedv-dev
         - os: linux
@@ -15,7 +14,6 @@ matrix:
           env:
             - PACKAGE=freedv
         - os: osx
-          language: generic
           env:
             - PACKAGE=freedv
 
