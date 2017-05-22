@@ -4,13 +4,35 @@ matrix:
     include:
         - os: linux
           sudo: required
-          env:
-            - PACKAGE=freedv-dev
-        - os: osx
+          addons:
+            apt:
+                packages:
+                    - libwxgtk3.0-dev
+                    - portaudio19-dev
+                    - libhamlib-dev
+                    - libsamplerate-dev
+                    - libasound2-dev
+                    - libao-dev
+                    - libgsm1-dev
+                    - libsndfile-dev
           env:
             - PACKAGE=freedv-dev
         - os: linux
           sudo: required
+          addons:
+            apt:
+                packages:
+                    - libwxgtk3.0-dev
+                    - portaudio19-dev
+                    - libhamlib-dev
+                    - libsamplerate-dev
+                    - libasound2-dev
+                    - libao-dev
+                    - libgsm1-dev
+                    - libsndfile-dev
+        - os: osx
+          env:
+            - PACKAGE=freedv-dev
           env:
             - PACKAGE=freedv
         - os: osx
