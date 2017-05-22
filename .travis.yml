@@ -8,6 +8,10 @@ matrix:
             - PACKAGE=codec2-dev
             - PLATFORM=linux
             - CMAKE_ARGS=-
+          addons:
+            apt:
+                packages:
+                    - libspeexdsp-dev
         - os: linux
           sudo: required
           addons:
