@@ -31,4 +31,4 @@ matrix:
             - PLATFORM=linux
             - CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
 
-script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make
+script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && ls -lah .
