@@ -1,33 +1,22 @@
 language: c
-
-matrix:
-    include:
-        - os: linux
-          sudo: required
-          env:
-            - PLATFORM=linux
-          addons:
-            apt:
-                packages:
-                    - tree
-                    - libspeexdsp-dev
-                    - libsamplerate-dev
-        - os: linux
-          sudo: required
-          addons:
-            apt:
-                packages:
-                    - tree
-                    - libwxgtk3.0-dev
-                    - portaudio19-dev
-                    - libhamlib-dev
-                    - libsamplerate-dev
-                    - libasound2-dev
-                    - libao-dev
-                    - libgsm1-dev
-                    - libsndfile-dev
-          env:
-            - PLATFORM=linux
+os: linux
+sudo: required
+env:
+    - PLATFORM=linux
+addons:
+  apt:
+    packages:
+        - tree
+        - libspeexdsp-dev
+        - libsamplerate-dev
+        - libwxgtk3.0-dev
+        - portaudio19-dev
+        - libhamlib-dev
+        - libsamplerate-dev
+        - libasound2-dev
+        - libao-dev
+        - libgsm1-dev
+        - libsndfile-dev
 
 jobs:
     include:
