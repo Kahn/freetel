@@ -17,6 +17,7 @@ addons:
         - libao-dev
         - libgsm1-dev
         - libsndfile-dev
+script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && tree -f -h
 
 jobs:
     include:
@@ -24,9 +25,7 @@ jobs:
           env:
             - PACKAGE=codec2-dev
             - CMAKE_ARGS=-
-          script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && tree -f -h
         - stage: build freedv-dev
           env:
             - PACKAGE=freedv-dev
             - CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
-          script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && tree -f -h
