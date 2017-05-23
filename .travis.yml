@@ -11,6 +11,7 @@ matrix:
           addons:
             apt:
                 packages:
+                    - tree
                     - libspeexdsp-dev
                     - libsamplerate-dev
         - os: linux
@@ -18,6 +19,7 @@ matrix:
           addons:
             apt:
                 packages:
+                    - tree
                     - libwxgtk3.0-dev
                     - portaudio19-dev
                     - libhamlib-dev
@@ -31,4 +33,4 @@ matrix:
             - PLATFORM=linux
             - CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
 
-script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && ls -lah .
+script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && tree
