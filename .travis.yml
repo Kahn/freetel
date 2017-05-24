@@ -3,6 +3,10 @@ os: linux
 sudo: required
 env:
     - PLATFORM=linux
+    - CODEC2_CMAKE_ARGS=-
+    - FREEDV_CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
+    - CODEC2_PACKAGE=codec2-dev
+    - FREEDV_PACKAGE=freedv-dev
 addons:
   apt:
     packages:
@@ -17,15 +21,9 @@ addons:
         - libao-dev
         - libgsm1-dev
         - libsndfile-dev
-script: cd $PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CMAKE_ARGS ../ && make && tree -f -h
+script:
+- cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h
+- cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h
 
-jobs:
-    include:
-        - stage: build codec2
-          env:
-            - PACKAGE=codec2-dev
-            - CMAKE_ARGS=-
-        - stage: build freedv-dev
-          env:
-            - PACKAGE=freedv-dev
-            - CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
+deploy:
+  skip_cleanup: true
