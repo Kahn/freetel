@@ -29,11 +29,11 @@ matrix:
     - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
       ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
 
-before_deploy: pwd && ls ~ && ls ~/build/Kahn/freetel && find ~ -type f -iname .bintray.json
+# before_deploy: pwd && ls ~ && ls ~/build/Kahn/freetel && find ~ -type f -iname .bintray.json
 
 deploy:
   provider: bintray
-  file: ~/build/Kahn/freetel/.bintray.json
+  file: /home/travis/build/Kahn/freetel/.bintray.json
   user: "kahn"
   key:
     secure: "au/n0qX+YsEa+2kRPyoiBeU7MejkVYeH1Nt/EvGKzxlzUbKJIa24zHqSMWP2gQV6IDMRApPIC2dI0CBXXvMAcErxE4kEXzKkty/F8SkWFO1QVBSB32pqjpkPt8vyGpwz/JqRkYG9W1/7Wxv8MDcj33KsmiZUbAdK7QWz1u+aTKdFi5skan0ujDgw4ud/hewq0ytgrFg6yygaN2tRXCe90weDqlU/bScz+77IHQDHqJuPmcKma2V4O/PlqaJbExAsUvTktYOcTIDEIbi/mzlFflme9kJP7DxBDdTbH6fGc4PE0rBGnR1Mc9H4SQcEEx7G6Xzkw5i5gdnhPcEIS9ztjhHL0KwTKJoC+zC2FWmEooJCxDmnBEDtXav5IUeLMYMbD6sqY2gztkgazbMIzWY2cf2bNN2BFGJMhxP63WvJlGbJ53pTa33emp8u31aYGdZZd77mVzjHfrjULwgqt3y4g2oBv5KrgYKFBbcOk8m7ApqXxGqoppTOE7OY/kn9fdaN/q4I/1UEuoUdiX/MCiIvr1zQ6yzk7Z2TMFP/WCoLhrq8tdFq+u3udXO+S7d7lE9lyv0k7kS2XQYMpq8exmaJ37kXewIKhFHJBTKQftYBS2PJA4pqGz2VnK0aVy6N+9D1g3JsnNysLPToQxv3qgpc06kwgnU1KRZN/VXPq3cqwUI="
