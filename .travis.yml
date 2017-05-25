@@ -1,5 +1,8 @@
-language: c
+global:
+  env:
+    secure: "PG6BhNl+PIf/KA/g7oJGT6hUJ+yPif6eM82lscHB72lQutZGiohxbJnIYA8wOQdw+fFtYYRjp2N6pIHk+jUt5poeUn5Bn/BfN6BKYvMVY43DWChzJfsOyF0hl9xyya9IinW6SpWqC4RJlOSlRDdAsdpw06TUSL0PzHCdXqX57RcVsCCFUuxVDQhY4pVF8hhN0Xg0b2h/g7pemFj3teuM1s0RFJ1YtYUmjGY5HFJWPSMrF+mSuGAw7QnEcWHtUk6U74hzQ/5hFv7MF07tI9vb8Ev7eyB/7wJ+bXqmxo2G2c+koxxFY08HYR14dm4j0G/39YkRNlQL6BxTokio+abXBkSjrsGlVlEJ6SQNPE01KGVTsuwM7DrvVUZjv3eQLK9zd8drAsA3IFM4P2m4CEKifPZXL/zfFpap+Jj+w2t7AYp3evBEUlVgzX+t0aD3AhKG2MCxMBcU9eDpayb2fiyPXtoqIQWW3sHwPLJ6Ivr0KEv61k7gHjOtFl6XxCqx27F2ABMBg/8lFG93VJjqS01BkiyQd0hJAm0dJzZ8lc5Rku3VrPvifKp/IrXH96X/x3OsMPE6lsd8svsNFhWKvdKXPLmTCO+oxMIeZG4RWiBkM+C/KGehfyhn+lAJBD7Y6sP/vWPvgQCD8QsNcHVEMOXJ6xb+e16NFrIe4qDGt6pa8mU="
 
+language: c
 matrix:
   include:
   - os: linux
@@ -7,24 +10,29 @@ matrix:
     env:
     - PLATFORM=linux
     - CODEC2_CMAKE_ARGS=-
-    - FREEDV_CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Debug -DBOOTSTRAP_WXWIDGETS=TRUE -DCODEC2_INCLUDE_DIRS=/home/travis/build/Kahn/freetel/codec2-dev/build_linux/src/libcodec2.so -DUSE_STATIC_CODEC2=FALSE -DUSE_STATIC_PORTAUDIO=TRUE
+    - FREEDV_CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Debug -DBOOTSTRAP_WXWIDGETS=TRUE -DCODEC2_INCLUDE_DIRS=/home/travis/build/Kahn/freetel/codec2-dev/build_linux/src/libcodec2.so
+      -DUSE_STATIC_CODEC2=FALSE -DUSE_STATIC_PORTAUDIO=TRUE
     - CODEC2_PACKAGE=codec2-dev
     - FREEDV_PACKAGE=freedv-dev
     addons:
       apt:
         packages:
-            - tree
-            - libspeexdsp-dev
-            - libsamplerate-dev
-            - libwxgtk3.0-dev
-            - portaudio19-dev
-            - libhamlib-dev
-            - libsamplerate-dev
-            - libasound2-dev
-            - libao-dev
-            - libgsm1-dev
-            - libsndfile-dev
+        - tree
+        - libspeexdsp-dev
+        - libsamplerate-dev
+        - libwxgtk3.0-dev
+        - portaudio19-dev
+        - libhamlib-dev
+        - libsamplerate-dev
+        - libasound2-dev
+        - libao-dev
+        - libgsm1-dev
+        - libsndfile-dev
     script:
-        - pwd && ls ~
-        #- cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && pwd && ls -lah src
-        - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+    - pwd && ls ~
+    - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
+      ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+
+deploy:
+  provider: bintray
+  user: "kahn"
