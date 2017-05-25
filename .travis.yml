@@ -29,6 +29,8 @@ matrix:
     - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
       ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
 
+before_deploy: pwd && ls ~ && ls ~/build/Kahn/freetel && find ~ -type f -iname .bintray.json
+
 deploy:
   provider: bintray
   file: ~/build/Kahn/freetel/.bintray.json
