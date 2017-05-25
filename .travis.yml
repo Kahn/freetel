@@ -1,29 +1,31 @@
-language: c
-os: linux
-sudo: required
-env:
+matrix:
+  include:
+  - c:
+    os: linux
+    sudo: required
+    env:
     - PLATFORM=linux
     - CODEC2_CMAKE_ARGS=-
     - FREEDV_CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
     - CODEC2_PACKAGE=codec2-dev
     - FREEDV_PACKAGE=freedv-dev
-addons:
-  apt:
-    packages:
-        - tree
-        - libspeexdsp-dev
-        - libsamplerate-dev
-        - libwxgtk3.0-dev
-        - portaudio19-dev
-        - libhamlib-dev
-        - libsamplerate-dev
-        - libasound2-dev
-        - libao-dev
-        - libgsm1-dev
-        - libsndfile-dev
-script:
-- cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h
-- cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h
+    addons:
+      apt:
+        packages:
+            - tree
+            - libspeexdsp-dev
+            - libsamplerate-dev
+            - libwxgtk3.0-dev
+            - portaudio19-dev
+            - libhamlib-dev
+            - libsamplerate-dev
+            - libasound2-dev
+            - libao-dev
+            - libgsm1-dev
+            - libsndfile-dev
+    script:
+        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h
+        - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h
 
 deploy:
   skip_cleanup: true
