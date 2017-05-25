@@ -26,5 +26,5 @@ matrix:
             - libsndfile-dev
     script:
         - pwd && ls ~
-        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && pwd && ls -lah src
-        - cd ../../$FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+        #- cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && pwd && ls -lah src
+        - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
