@@ -25,8 +25,8 @@ matrix:
             - libgsm1-dev
             - libsndfile-dev
     script:
-        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h && cd ~
-        - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h && cd ~
+        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h && pwd
+        - cd ../../$FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h && pwd
 
 deploy:
   skip_cleanup: true
