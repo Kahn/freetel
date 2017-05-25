@@ -7,7 +7,7 @@ matrix:
     env:
     - PLATFORM=linux
     - CODEC2_CMAKE_ARGS=-
-    - FREEDV_CMAKE_ARGS=-DBOOTSTRAP_WXWIDGETS=TRUE
+    - FREEDV_CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Debug -DBOOTSTRAP_WXWIDGETS=TRUE -DCODEC2_INCLUDE_DIRS=/home/travis/build/Kahn/freetel/codec2-dev/build_linux/src/libcodec2.so -DUSE_STATIC_CODEC2=FALSE -DUSE_STATIC_PORTAUDIO=TRUE
     - CODEC2_PACKAGE=codec2-dev
     - FREEDV_PACKAGE=freedv-dev
     addons:
@@ -25,8 +25,9 @@ matrix:
             - libgsm1-dev
             - libsndfile-dev
     script:
-        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && tree -f -h && pwd
-        - cd ../../$FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && tree -f -h && pwd
+        - pwd && ls ~
+        - cd $CODEC2_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $CODEC2_CMAKE_ARGS ../ && make && pwd && ls -lah
+        - cd ../../$FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah
 
 deploy:
   skip_cleanup: true
