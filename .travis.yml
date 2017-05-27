@@ -1,3 +1,7 @@
+env:
+  global:
+    secure: N0sH0msTB4otjXjI0q5XISDqRnX7b3GUu7qHEjfrVzD8MEc229wEtydZXMse8LayXrjMufM/9Up939X5a8pIYEsVCCQ9eiV0lsWS6QSNhhhFvGRPRP/d3lhD434Vp+ZPDnn04VD+FU9lUyfA0VNyOTZlq8NCINvlXIJIChpe/xiwiJ32NY8ZZcev9Oo6bevOIfHSAzkq+1ugPxz6Yk6rorziRyXTHk/0fcxiMUMQNLRLqDjQg69BfGozOnQYxc32qJqC1/Ln5WuTZPaAnqPU/4mqwOMQqGlUH0C2SXfarzCcQDts/Knu2fg3NJduZCb+k/80yU253QOssleIWGc6qo3xaHJd9W088w+b9nno+gL7vweqg0FdHpvZ2ASj80nRWikg111L38VuGizW8CE9t/uF+UdDPcdOICKj0ANE2fT5apwpeghKodH/zM99roWzI6T1K8FFNmH/5ti4lt2wfXpo0jpXvk9nFSGfDolWWfjqYBksPNxFCycI4lYQ+/6fluFrsByxKl9Z+mWaB7VJSsm5i0q4R3nKfl5MzsuQ1F15kOUiSaMWxy/IAc8eBlRAblsJE47EODXt+c8+A+AIa9bGLQjM15cOWXD0fPQtFnfKzcbs6Mx1dCe/nSiroFZKmXKwhn8NWh8QOGmfjhlTZGLk/Lp1L8JFtT7pCCmKYs4=
+
 language: c
 matrix:
   include:
@@ -28,12 +32,7 @@ matrix:
     - pwd && ls ~
     - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
       ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
-
-# before_deploy: pwd && ls ~ && ls ~/build/Kahn/freetel && find ~ -type f -iname .bintray.json
-
 deploy:
   provider: bintray
   file: /home/travis/build/Kahn/freetel/.bintray.json
-  user: "kahn"
-  key:
-    secure: "au/n0qX+YsEa+2kRPyoiBeU7MejkVYeH1Nt/EvGKzxlzUbKJIa24zHqSMWP2gQV6IDMRApPIC2dI0CBXXvMAcErxE4kEXzKkty/F8SkWFO1QVBSB32pqjpkPt8vyGpwz/JqRkYG9W1/7Wxv8MDcj33KsmiZUbAdK7QWz1u+aTKdFi5skan0ujDgw4ud/hewq0ytgrFg6yygaN2tRXCe90weDqlU/bScz+77IHQDHqJuPmcKma2V4O/PlqaJbExAsUvTktYOcTIDEIbi/mzlFflme9kJP7DxBDdTbH6fGc4PE0rBGnR1Mc9H4SQcEEx7G6Xzkw5i5gdnhPcEIS9ztjhHL0KwTKJoC+zC2FWmEooJCxDmnBEDtXav5IUeLMYMbD6sqY2gztkgazbMIzWY2cf2bNN2BFGJMhxP63WvJlGbJ53pTa33emp8u31aYGdZZd77mVzjHfrjULwgqt3y4g2oBv5KrgYKFBbcOk8m7ApqXxGqoppTOE7OY/kn9fdaN/q4I/1UEuoUdiX/MCiIvr1zQ6yzk7Z2TMFP/WCoLhrq8tdFq+u3udXO+S7d7lE9lyv0k7kS2XQYMpq8exmaJ37kXewIKhFHJBTKQftYBS2PJA4pqGz2VnK0aVy6N+9D1g3JsnNysLPToQxv3qgpc06kwgnU1KRZN/VXPq3cqwUI="
+  user: kahn

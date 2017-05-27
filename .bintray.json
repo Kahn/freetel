@@ -28,7 +28,7 @@
 
     "files":
         [
-        {"includePattern": "freedv-dev/build_linux/src/(.*)", "uploadPattern": "$2"}
+        {"includePattern": "/home/travis/build/Kahn/freetel/freedv-dev/build_linux/src/(.*)", "uploadPattern": "$2"}
         ],
     "publish": true
 }
