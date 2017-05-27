@@ -1,8 +1,8 @@
 {
     "package": {
-        "name": "auto-upload",
+        "name": "freedv",
         "repo": "freetel",
-        "subject": "freetel",
+        "subject": "kahn",
         "desc": "freedv-dev",
         "website_url": "http://freedv.org",
         "issue_tracker_url": "http://freedv.org",
