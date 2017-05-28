@@ -33,9 +33,10 @@ matrix:
     - PLATFORM=osx
     - CODEC2_PACKAGE=codec2-dev
     - FREEDV_PACKAGE=freedv-dev
+    - BREW_PACKAGES=subversion git libtool libsamplerate sox portaudio dylibbundler cmake
     before_install:
     - brew update
-    - brew install subversion git libtool libsamplerate sox portaudio dylibbundler cmake
+    - brew outdated $BREW_PACKAGES || brew upgrade $BREW_PACKAGES
     script:
     - pwd && ls ~
     # - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
