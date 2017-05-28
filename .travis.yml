@@ -1,36 +1,48 @@
 language: c
 matrix:
   include:
-  - os: linux
-    sudo: required
+  # - os: linux
+  #   sudo: required
+  #   env:
+  #   - PLATFORM=linux
+  #   - CODEC2_CMAKE_ARGS=-
+  #   - FREEDV_CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Debug -DBOOTSTRAP_WXWIDGETS=TRUE -DCODEC2_INCLUDE_DIRS=/home/travis/build/Kahn/freetel/codec2-dev/build_linux/src/libcodec2.so
+  #     -DUSE_STATIC_CODEC2=FALSE -DUSE_STATIC_PORTAUDIO=TRUE
+  #   - CODEC2_PACKAGE=codec2-dev
+  #   - FREEDV_PACKAGE=freedv-dev
+  #   addons:
+  #     apt:
+  #       packages:
+  #       - tree
+  #       - libspeexdsp-dev
+  #       - libsamplerate-dev
+  #       - libwxgtk3.0-dev
+  #       - portaudio19-dev
+  #       - libhamlib-dev
+  #       - libsamplerate-dev
+  #       - libasound2-dev
+  #       - libao-dev
+  #       - libgsm1-dev
+  #       - libsndfile-dev
+  #   script:
+  #   - pwd && ls ~
+  #   - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
+  #     ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+  - os: osx
     env:
-    - PLATFORM=linux
-    - CODEC2_CMAKE_ARGS=-
-    - FREEDV_CMAKE_ARGS=-DCMAKE_BUILD_TYPE=Debug -DBOOTSTRAP_WXWIDGETS=TRUE -DCODEC2_INCLUDE_DIRS=/home/travis/build/Kahn/freetel/codec2-dev/build_linux/src/libcodec2.so
-      -DUSE_STATIC_CODEC2=FALSE -DUSE_STATIC_PORTAUDIO=TRUE
+    - PLATFORM=osx
     - CODEC2_PACKAGE=codec2-dev
     - FREEDV_PACKAGE=freedv-dev
-    addons:
-      apt:
-        packages:
-        - tree
-        - libspeexdsp-dev
-        - libsamplerate-dev
-        - libwxgtk3.0-dev
-        - portaudio19-dev
-        - libhamlib-dev
-        - libsamplerate-dev
-        - libasound2-dev
-        - libao-dev
-        - libgsm1-dev
-        - libsndfile-dev
+    before_install:
+    - brew update
+    - brew install subversion git libtool libsamplerate sox portaudio dylibbundler cmake
     script:
     - pwd && ls ~
-    - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
-      ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
-deploy:
-  provider: bintray
-  file: /home/travis/build/Kahn/freetel/.bintray.json
-  user: kahn
-  key:
-    secure: a4qsKuokuEt8lN2PgaoeqBKt3fnJ92t2gEwKS2jWILYRp1kNNJq7uMvb1gPU+foPrCG7AwUPE12Pxejkn7yidwdQdTegpZhWTs7EE6zDIwrWxdRGj34EehTI9IgYjTCkTozS8Dd5aZ1NM0mHm05RzijINSwZuOgj+b4Qd/9OL2KhCLK+e5LetFDCt4o4SYcvYn7/RCnax+tvwkprKn0odlx7cRORqlk6sEMoc6Krx+JNjizQvYL57Wuw2s/CCrYKt5EAKIjxcbNSa1t+Lz82+hwBDxKyywSbm9DdO7io6xVsDoZsKKdsUNOejY+dXjkMyllSltSofaZE3OYyQ3L66SJbJkLDxgr5+cRbq/PmqF6ISk4H4WEuJKYRpxx6kOhyYecbAHdCht1/b7wVMnvmen/3NuGlCryupmBKcuQgBnJklBQ/Phi8/lS9E47RuRhVlWQLqJwW4T0b0H36wepUNTb7z7tuUVLFclZitBeT2N7zoEf87B7zQnH6u+fLNnEyaWOFPBiSz3SkYhChBRwARryVXBp0+B4HCh/R9zGnO2RNIOydVQZU+OiIgj8jqnvVaE47pAOdJ7vsR4oBIrr3ziuuqMf9FmHTRnuyC9ap4vh2YYdijxobqNrN/7LJ/3yk+qJKALzHdAoDUCG+r90HJr36TC+l3sBJ1cy3L/ayeZY=
+    # - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
+    #   ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+# deploy:
+#   provider: bintray
+#   file: /home/travis/build/Kahn/freetel/.bintray.json
+#   user: kahn
+#   key:
+#     secure: a4qsKuokuEt8lN2PgaoeqBKt3fnJ92t2gEwKS2jWILYRp1kNNJq7uMvb1gPU+foPrCG7AwUPE12Pxejkn7yidwdQdTegpZhWTs7EE6zDIwrWxdRGj34EehTI9IgYjTCkTozS8Dd5aZ1NM0mHm05RzijINSwZuOgj+b4Qd/9OL2KhCLK+e5LetFDCt4o4SYcvYn7/RCnax+tvwkprKn0odlx7cRORqlk6sEMoc6Krx+JNjizQvYL57Wuw2s/CCrYKt5EAKIjxcbNSa1t+Lz82+hwBDxKyywSbm9DdO7io6xVsDoZsKKdsUNOejY+dXjkMyllSltSofaZE3OYyQ3L66SJbJkLDxgr5+cRbq/PmqF6ISk4H4WEuJKYRpxx6kOhyYecbAHdCht1/b7wVMnvmen/3NuGlCryupmBKcuQgBnJklBQ/Phi8/lS9E47RuRhVlWQLqJwW4T0b0H36wepUNTb7z7tuUVLFclZitBeT2N7zoEf87B7zQnH6u+fLNnEyaWOFPBiSz3SkYhChBRwARryVXBp0+B4HCh/R9zGnO2RNIOydVQZU+OiIgj8jqnvVaE47pAOdJ7vsR4oBIrr3ziuuqMf9FmHTRnuyC9ap4vh2YYdijxobqNrN/7LJ/3yk+qJKALzHdAoDUCG+r90HJr36TC+l3sBJ1cy3L/ayeZY=
