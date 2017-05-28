@@ -37,10 +37,12 @@ matrix:
     before_install:
     - brew update
     - brew outdated $BREW_PACKAGES || brew upgrade $BREW_PACKAGES
+    - git clone git://git.code.sf.net/p/hamlib/code hamlib-code && cd hamlib-code && ./autogen.sh && ./configure --disable-shared --prefix /home/travis/build/Kahn/freetel/hamlib && make && make install
     script:
     - pwd && ls ~
-    # - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake $FREEDV_CMAKE_ARGS
-    #   ../ && make && cmake $FREEDV_CMAKE_ARGS ../ && make && pwd && ls -lah src
+    - cd $FREEDV_PACKAGE && mkdir build_$PLATFORM && cd build_$PLATFORM && cmake -DWXCONFIG=/opt/local/Library/Frameworks/wxWidgets.framework/Versions/wxWidgets/3.0/lib/wx/config/osx_cocoa-unicode-static-3.0 -DCMAKE_EXE_LINKER_FLAGS="-L/opt/local/lib" -DHAMLIB_INCLUDE_DIR=../../hamlib/include -DHAMLIB_LIBRARY=../../hamlib/lib/libhamlib.a ../ && make && pwd && ls -lah src
+    -  cmake $FREEDV_CMAKE_ARGS
+
 # deploy:
 #   provider: bintray
 #   file: /home/travis/build/Kahn/freetel/.bintray.json
